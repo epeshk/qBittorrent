@@ -1961,7 +1961,15 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
             }
         });
         connect(msgBox, &QDialog::finished, this, cleanup);
-        msgBox->open();
+        if (invokedByUser)
+        {
+            msgBox->open();
+        }
+        else
+        {
+            msgBox->setModal(false);
+            msgBox->show();
+        }
     }
     else
     {
